@@ -10,6 +10,6 @@
 4. 예상 소요 시간은 **1시간(QnA 30분, 발표 30분) 내외**입니다.
 
 ## 기록
-### 1회차 (22.7.28)
-#### Swift concurrency
+### Week 1 (22.7.28)
+#### [Swift concurrency](https://github.com/Nexters/WWDC-study/tree/main/week-1)
 - 
