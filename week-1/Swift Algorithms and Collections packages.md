@@ -24,6 +24,10 @@ Deque는 배열처럼 인덱스를 활용하며, 자료의 양쪽 끝의 삽입�
 
 
 `.removeSubrange`
+
+<br>
+
+
 <img width="556" alt="스크린샷 2022-07-29 오전 12 27 37" src="https://user-images.githubusercontent.com/79178843/181577021-6a0bf508-9a54-4443-b0ee-0d5cebab9a5c.png">
 
 
