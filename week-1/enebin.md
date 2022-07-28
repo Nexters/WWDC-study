@@ -13,7 +13,9 @@
 이전의 언어들은 첫번째 이미지 같은 구조(aka. `goto`)로 되어있어 가독성이 떨어지는 문제가 있었다. **Structured programming flow**는 그런데서 벗어나 더욱 가독성 좋고 위에서 아래로 흐르는 듯한 구조를 일컫는다. 이는 컨트롤 플로우에 유동성을 더해 코드를 이해하기 쉽게 만들어 준다.([wikipedia](https://ko.wikipedia.org/wiki/%EA%B5%AC%EC%A1%B0%EC%A0%81_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D))
 
 #### 예시
-![](https://velog.velcdn.com/images/enebin777/post/4865dea6-a53d-456e-8adc-e23c2baa3707/image.png)
+<p align="center">
+        <img src="https://velog.velcdn.com/images/enebin777/post/4865dea6-a53d-456e-8adc-e23c2baa3707/image.png" width=400/> 
+</p>
 
 
 ## Swift concurrency의 structured 구조
