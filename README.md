@@ -12,4 +12,4 @@
 ## 기록
 ### Week 1 (22.7.28)
 #### [Swift concurrency](https://github.com/Nexters/WWDC-study/tree/main/week-1)
-- [Explore Structured Concurrency in Swift](week-1/%5BWWDC2021%5D%20Explore%20Structured%20Concurrency%20in%20Swift/[../[WWDC2021]%20Explore%20Structured%20Concurrency%20in%20Swift/[WWDC%202022]%20Explore%20structured%20concurrency%20in%20Swif%20272879ee2f8a4529b1d34ddd132b2bb0.md]])
+- [Explore Structured Concurrency in Swift](https://github.com/Nexters/WWDC-study/blob/main/week-1/%5BWWDC2021%5D%20Explore%20Structured%20Concurrency%20in%20Swift/%5BWWDC%202022%5D%20Explore%20structured%20concurrency%20in%20Swif%20272879ee2f8a4529b1d34ddd132b2bb0.md)
