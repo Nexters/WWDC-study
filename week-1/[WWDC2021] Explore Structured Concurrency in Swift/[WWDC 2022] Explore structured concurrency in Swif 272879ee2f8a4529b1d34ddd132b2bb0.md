@@ -203,7 +203,7 @@ structured Task가 존재하든, unstructrued Task도 존재합니다.!
     Inherit actor isolation and priority of the origin context)
     
 2. 생명주기가 특정 범위로 제한되지 않습니다. 
-(자신이 생성된 위치의 scope가료되더라도, 계속해서 실행됩니다.)
+(자신이 생성된 위치의 scope가 종료되더라도, 계속해서 실행됩니다.)
     
     Lifetime is not confined to any scope
     
