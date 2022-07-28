@@ -1,7 +1,7 @@
-# Swift concurrency의 structured programming
-
 #### References
 - https://developer.apple.com/videos/play/wwdc2021/10134
+
+# Swift concurrency의 structured programming
 
 ## Structured programming?
 ---
@@ -149,12 +149,47 @@ func fetchThumbnails(for ids: [String]) async throws -> [String: UIImage] {
 다행히 컴파일러가 이를 잡아준다. 그건 알겠는데 이걸 해결하려면 또 어떻게 해야 하는지..?
 
 
-### @Sendable
-Task를 만들 때마다 @Sendable 타입으로 클로저가 생성된다. 이는 lexical context에서 mutable variable을 캡처하면 데이터 레이스가 생길 것 같다고 얘기해준다. 
+# Sendable
+#### Reference
+- https://developer.apple.com/videos/play/wwdc2022/110351/
+- https://developer.apple.com/documentation/swift/sendable
 
-@Sendable은 unmutable한 타입만 채택할 수 있는 프로토콜이다. 
+Group에 add 되는 task 클로저 들은 `Sendable` 프로토콜을 준수해야 한다. `Sendable`은 클로저가 캡처하는 값 중 atomic을 보장할 수 없는 타입이 존재하는지를 체크한다. 이는 data race를 막기 위함이다.
 
-https://velog.io/@mo_nireu/WWDC2022-Swift-Concurrency%EB%A5%BC-%ED%86%B5%ED%95%9C-Data-Race-%EB%B0%A9%EC%A7%80%ED%95%98%EA%B8%B01-Task-isolation
+### 가능한 타입
+Document에 따르면 다음 타입이 Sendable을 따른다.
+> - Value types
+> - Reference types with no mutable  storage
+> - Reference types that internally manage access to their state
+> - Functions and closures (by marking them with `@Sendable`)
+
+특히 `class`는 `final`로 마크되어야 사용 가능하며 immutable한 stored property를 사용하면 안되고 다른 클래스를 상속해서는 안 된다.(이럴 거면 그냥 안 쓰는게..)
+
+클로저나 함수의 경우 Sendable protocol을 채택하게 만드는 대신 `@Sendable` attribute를 붙이면 된다. 단, 함수와 클로저가 캡처하는 모든 값들은 반드시 `sendable`해야 한다.
+
+Data race는 동시성을 지원하는 프로그램에서 서로 다른 작업(쓰레드)이 공유된 자원을 서로 사용, 수정하려고 할 때 조작의 타이밍이나 순서 등이 결과값에 영향을 줄 수 있는 상태를 말한다.
+
+### 에러 고치기
+Swift 컴파일러는 lexical context에서 mutable 한 variable을 캡처하면 데이터 레이스가 생길 수 있다는 에러를 표시한다(위 사진처럼). 하여튼 이를 고치려면 어떻게 해야할까.
+
+``` Swift
+func fetchThumbnails(for ids: [String]) async throws -> [String: UIImage] {
+    var thumbnails: [String: UIImage] = [:]
+    try await withThrowingTaskGroup(of: (String, UIImage).self) { group in 
+        for id in ids {
+            group.addTask {
+                return (id, try await fetchOneThumbnail(withID: id)) 
+            }
+        }
+        for try await (id, thumbnail) in group { 
+            thumbnails[id] = thumbnail
+        }
+    }
+    return thumbnails
+}
+```
+간단한 해결법 -> task에서 데이터를 안 바꾸면 된다. 대신 task는 단순히 값을 리턴하기만 하면 된다. 그러면 `for (try) await` 구문을 이용해 후에 그룹에서 리턴되는 값들을 처리할 수 있다. 그룹은 어차피 한 번에 리턴되기 때문에(맞을까?).
 
 
-
+### 그룹 내에서의 cancellation
+그렇다면 그룹 안에 속한 task가 에러를 던지면 어떻게 될까? 이 경우 그룹 안의 모든 task가 implicit하게 cancel된다. 이는 `async let`과 같은 방식이다. 하지만 상위 task의 cancel은 implicit하지 않다. 이 경우 반드시 `cancelAll`을 이용해 태스크를 취소해야 한다. 그렇지 않으면 상위 태스크는 모든 하위 태스크가 완료될 때까지 기다릴 것이다.
