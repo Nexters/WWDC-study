@@ -1,3 +1,11 @@
+# 추가정리 & 질문사항
+- `continuation` vs `Actor`
+- stack에서 non-async 왜 안 pop?
+- thread에서 semaphore를 원래 관리해줌?
+- continuation이 중지되고 다시 돌아오는 방법
+- atomicity 대체 뭐임
+
+---
 
 ![](https://velog.velcdn.com/images/enebin777/post/78cd5798-1d0f-42d7-a870-94314a2ccd34/image.png)
 - 이런 식으로 태스크가 관리되는 코드를 만들고 싶다. 
@@ -87,6 +95,8 @@
 ![](https://velog.velcdn.com/images/enebin777/post/6f89c3da-fbc1-471e-aad4-591e10d46655/image.png)
 - 이런 식으로 위 과정을 반복하며 스택을 자유롭게 사용한다. 
 - non-async는 대체하지 않고 대신 위에 쌓인다.
+
+- 
 
 ---
 ## Swift concurrency의 장점 한번 더
