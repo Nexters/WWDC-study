@@ -1,13 +1,5 @@
 # Swift Concurrency Deep Dive
 
-이 글은 Swift concurrency, 즉 async/await의 깊은 이해를 위해 작성된 글입니다. iOS 관련 지식은 WWDC에서 얻는 편인데 Swift concurrency는 상당히 중요함에도 불구하고 WWDC에서 굉장히 알듯말듯하게 설명이 되어있습니다.
-
-애플이 정성을 들이지 않은 거라고 생각했는데 정리하고 나니 어쩌면 제 기반지식이 부족해서 벌어진 일인 것 같기도 하네요. 하여튼 시작합니다. 대학원 때 논문 쓰던 기억을 살려서.. 한 번 짜임새 있게 써보도록 하겠습니다.
-
-그러므로 새로운 정보를 정리하면서 저만의 언어로 정리해보았습니다. 최대한 정확한 출처에서 교차검증하였으나 혹여 틀린 정보가 있을 수도 있습니다. 그럴 경우 코멘트를 통해 알려주시면 감사하겠습니다.
-
-keyword: continuation, Task, actor, structured programming, unstructured programming, child task, forward progress, full thread context switching 
-
 ## Swift Concurrency는 GCD의 대체재
 
 ---
@@ -526,11 +518,3 @@ Cooperative thread pool은 S.C가 병렬적인 태스크 실행을 위해 미리
 `Task.init`을 통해 만드는 Uncstructured concurrency는 도큐먼트에 의하면 만들어진 맥락에 속하는 액터를 상속한다. 반면 `detached`를 통해 만드는 경우 액터를 상속하지 않는다. 그 때 만약 현 맥락의 태스크가 속한 액터가 없다면 `detached` 태스크는 일반 태스크와 같은 것일까? 
 
 Task의 로컬 변수 상속 여부를 제외하면 둘다 Cooperative thread pool에서 돌아갈 것이고 그러므로 이는 옳다. ([제작자피셜](https://forums.swift.org/t/current-actor-semantics-question/60120/4))
-
-## Swift 소스코드 톺아보기
-
-### Continuation에서 돌아오는(resume) 방식
-
-### Swift Foundation에서 async 메소드의 구현
-
-### 만능일까?
