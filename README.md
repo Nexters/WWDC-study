@@ -9,7 +9,7 @@
 3. 스터디 당일 **랜덤으로 선정된 1명이 정리한 내용을 발표**합니다
 4. 예상 소요 시간은 **1시간(QnA 30분, 발표 30분) 내외**입니다.
 
-## 기록
-### Week 1 (22.7.28)
-#### [Swift concurrency](https://github.com/Nexters/WWDC-study/tree/main/week-1)
-- [Explore Structured Concurrency in Swift](https://github.com/Nexters/WWDC-study/blob/main/week-1/%5BWWDC2021%5D%20Explore%20Structured%20Concurrency%20in%20Swift/%5BWWDC%202022%5D%20Explore%20structured%20concurrency%20in%20Swif%20272879ee2f8a4529b1d34ddd132b2bb0.md)
+## 구인 중
+관심있으신 분은 아무때나 아래 오픈카톡으로 문의 주세요!!!
+
+https://open.kakao.com/o/sBO1lrCe
